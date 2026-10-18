@@ -1,4 +1,4 @@
-# Payment Request Checker
+# Payment Fraud Detection Engine
 
 A Python and JavaScript tool that reviews payment requests for fraud risk before they get approved.
 
