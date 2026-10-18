@@ -34,13 +34,23 @@ All six sample scenarios are fictional and follow patterns described in FBI IC3 
 
 ## Running it
 
-Install the one dependency with `pip install -r requirements.txt`, then double click `Start.command`. It opens in your browser at http://127.0.0.1:8765. Python 3.10 or later is recommended. No paid API key is required.
+Install the one dependency with `pip install -r requirements.txt`, then double click `Start.command`. It opens in your browser at http://127.0.0.1:8765. Python 3.10 or later is recommended. No paid API key is required, and the local Llama explanation is optional (see below).
 
 Run the automated tests with:
 
 ```
 python3 -m unittest test_analysis_engine.py test_pdf_reader.py
 ```
+
+## Optional local AI explanation
+
+If Ollama is running on your computer with Llama 3.2 installed, the tool uses it to write the plain-English explanation of each review. Without it, the tool uses rule-based wording and everything else works the same.
+
+**Rules decide, the model only explains.** Every finding comes from exact comparison rules in `analysis_engine.py`. The model only receives facts those rules already found and phrases them. It cannot add findings or approve a payment, and its explanation is capped at 900 characters.
+
+**Everything stays local.** The model runs through Ollama on your own machine, so request details are sent nowhere else. The results screen shows whether the explanation came from Llama or from the rules.
+
+To turn it on, install Ollama, run `ollama pull llama3.2:3b`, and start Ollama before launching the app.
 
 ## What it is not
 
